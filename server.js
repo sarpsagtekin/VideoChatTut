@@ -3,9 +3,22 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
+
+// Serve static files from the React app in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  });
+}
+
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:{port}",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.REACT_APP_FRONTEND_URL
+        : "https://likom-video.herokuapp.com/",
     methods: ["GET", "POST"],
   },
 });
@@ -30,4 +43,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(port, () => console.log("server is running on port " + port));
+server.listen(port, () =>
+  console.log("Backend Likom server is running on port " + port)
+);
