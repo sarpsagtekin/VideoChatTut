@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "frontend": "cd frontend && npm start",
-    "frontend-install": "cd frontend && npm install",
+    "frontend-install": "cd frontend ",
     "install-dependencies": "npm install && npm run frontend-install",
     "heroku-postbuild": "npm run frontend-install && npm run build --prefix frontend"
   },
