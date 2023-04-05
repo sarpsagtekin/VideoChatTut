@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/sarpsagtekin/VideoChatTut/issues"
   },
-  "homepage": "https://github.com/sarpsagtekin/VideoChatTut#readme"
+  "homepage": "https://github.com/sarpsagtekin/VideoChatTut#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.1"
+  },
+  "engines": {
+    "node": "14.x"
+  }
 }
